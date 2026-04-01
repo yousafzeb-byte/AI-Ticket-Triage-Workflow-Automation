@@ -1,5 +1,8 @@
 # AI Ticket Triage Assistant: Full-Stack Workflow Automation
 
+[![CI](https://github.com/yousafzeb-byte/AI-Ticket-Triage-Workflow-Automation/actions/workflows/ci.yml/badge.svg)](https://github.com/yousafzeb-byte/AI-Ticket-Triage-Workflow-Automation/actions/workflows/ci.yml)
+![CD Ready](https://img.shields.io/badge/CD-Docker%20%2B%20Render%20Ready-success)
+
 Production-grade full-stack AI workflow project for support operations.
 
 The system ingests unstructured support tickets, predicts priority, recommends routing team, and produces concise summaries with optional LLM enhancement. It is designed as a portfolio project that demonstrates practical AI engineering, backend/API design, frontend delivery, testing, and deployment readiness.
