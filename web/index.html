@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Ticket Triage Assistant: Full-Stack Workflow Automation</title>
+    <title>AI Ticket Assistant</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,33 +19,90 @@
     <main class="shell">
       <header class="hero">
         <p class="eyebrow">Applied AI Workflow Demo</p>
-        <h1>AI Ticket Triage Assistant: Full-Stack Workflow Automation</h1>
+        <h1>AI Ticket Assistant</h1>
         <p class="subtitle">
-          Paste support tickets, run triage, and get explainable priority,
-          routing, and summary output.
+          Paste your support tickets, click run, and get clear priority,
+          routing, and summary results.
         </p>
+        <div class="workflow-strip">
+          <span>Ingest</span>
+          <span>Classify</span>
+          <span>Route</span>
+          <span>Summarize</span>
+          <span>Export</span>
+        </div>
       </header>
 
-      <section class="panel input-panel">
-        <div class="panel-head">
-          <h2>Input Tickets</h2>
-          <button id="loadSampleBtn" class="ghost">Load Sample Data</button>
-        </div>
-        <p class="hint">
-          JSON format: [{"ticket_id":"T-1","title":"...","description":"..."}]
-        </p>
-        <textarea id="ticketInput" spellcheck="false"></textarea>
-        <div class="actions">
-          <button id="runBtn" class="primary">Run AI Triage</button>
-          <span id="status" class="status"></span>
+      <section class="panel stats-panel">
+        <div class="stats-grid" id="statsGrid">
+          <article class="stat-card">
+            <p class="stat-label">Total Tickets</p>
+            <p class="stat-value" id="statTotal">0</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Critical (P0)</p>
+            <p class="stat-value" id="statP0">0</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Top Team</p>
+            <p class="stat-value" id="statTopTeam">-</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Last Run</p>
+            <p class="stat-value" id="statLastRun">Not run</p>
+          </article>
         </div>
       </section>
 
-      <section class="panel output-panel">
-        <div class="panel-head">
-          <h2>Triage Results</h2>
-        </div>
-        <div id="cards" class="cards"></div>
+      <section class="workspace-grid">
+        <section class="panel input-panel">
+          <div class="panel-head">
+            <h2>Your Tickets</h2>
+            <div class="mini-actions">
+              <button id="loadSampleBtn" class="ghost">Use Example</button>
+              <button id="formatBtn" class="ghost">Clean Up</button>
+              <button id="clearBtn" class="ghost">Clear</button>
+            </div>
+          </div>
+          <p class="hint">
+            One ticket per block. First line is the title, second line is the
+            details. Leave a blank line between tickets. Or click
+            <strong>Use Example</strong> to see how it works.
+          </p>
+          <textarea
+            id="ticketInput"
+            spellcheck="false"
+            placeholder="Login fails after MFA&#10;Users cannot login after enabling MFA and receive timeout errors.&#10;&#10;Production API outage&#10;Primary API is down in us-east region and all requests fail."
+          ></textarea>
+          <div class="actions">
+            <button id="runBtn" class="primary">Run</button>
+            <span id="status" class="status"></span>
+          </div>
+        </section>
+
+        <section class="panel output-panel">
+          <div class="panel-head">
+            <h2>Results</h2>
+            <div class="mini-actions">
+              <button id="copyResultsBtn" class="ghost">Copy Results</button>
+              <button id="downloadResultsBtn" class="ghost">Download</button>
+            </div>
+          </div>
+          <div id="cards" class="cards"></div>
+          <details class="raw-output">
+            <summary>Detailed View</summary>
+            <pre id="rawOutput"></pre>
+          </details>
+        </section>
+      </section>
+
+      <section class="panel guide-panel">
+        <h2>How to Use</h2>
+        <ol>
+          <li>Click Use Example, or paste your own ticket list.</li>
+          <li>Click Run to generate priority and routing decisions.</li>
+          <li>Review results, then copy or download for your team.</li>
+        </ol>
       </section>
     </main>
 
