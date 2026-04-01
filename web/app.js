@@ -117,8 +117,10 @@ function clearInputAndResults() {
   latestResults = [];
   cardsEl.innerHTML = "<p class='meta'>No results yet.</p>";
   rawOutputEl.textContent = "";
+  const detailsEl = rawOutputEl.closest("details");
+  if (detailsEl) detailsEl.removeAttribute("open");
   updateStats([]);
-  setStatus("Cleared input and results.");
+  setStatus("Cleared.");
 }
 
 function parsePlainTextTickets(text) {
