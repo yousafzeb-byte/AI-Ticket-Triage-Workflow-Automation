@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Ticket Triage Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Syne:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <main class="shell">
+      <header class="hero">
+        <p class="eyebrow">Applied AI Workflow Demo</p>
+        <h1>AI Ticket Triage Assistant</h1>
+        <p class="subtitle">
+          Paste support tickets, run triage, and get explainable priority,
+          routing, and summary output.
+        </p>
+      </header>
+
+      <section class="panel input-panel">
+        <div class="panel-head">
+          <h2>Input Tickets</h2>
+          <button id="loadSampleBtn" class="ghost">Load Sample Data</button>
+        </div>
+        <p class="hint">
+          JSON format: [{"ticket_id":"T-1","title":"...","description":"..."}]
+        </p>
+        <textarea id="ticketInput" spellcheck="false"></textarea>
+        <div class="actions">
+          <button id="runBtn" class="primary">Run AI Triage</button>
+          <span id="status" class="status"></span>
+        </div>
+      </section>
+
+      <section class="panel output-panel">
+        <div class="panel-head">
+          <h2>Triage Results</h2>
+        </div>
+        <div id="cards" class="cards"></div>
+      </section>
+    </main>
+
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
