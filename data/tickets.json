@@ -1,17 +1,17 @@
 [
   {
     "ticket_id": "T-1001",
-    "title": "Login fails after MFA",
-    "description": "Users cannot login after enabling MFA and receive timeout errors."
+    "title": "Cannot log in to my account",
+    "description": "I keep getting an error when trying to sign in. It has been happening since this morning."
   },
   {
     "ticket_id": "T-1002",
-    "title": "Unexpected invoice charge",
-    "description": "Customer reports duplicate payment charge for annual plan."
+    "title": "Charged twice this month",
+    "description": "My card was billed twice for the same subscription. I need a refund for the extra charge."
   },
   {
     "ticket_id": "T-1003",
-    "title": "Production API outage",
-    "description": "Primary API is down in us-east region and all requests fail."
+    "title": "The website is completely down",
+    "description": "No one on our team can access the site. Every page shows an error and has been like this for an hour."
   }
 ]
