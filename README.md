@@ -1,151 +1,80 @@
 # AI Ticket Triage Assistant: Full-Stack Workflow Automation
 
 [![CI](https://github.com/yousafzeb-byte/AI-Ticket-Triage-Workflow-Automation/actions/workflows/ci.yml/badge.svg)](https://github.com/yousafzeb-byte/AI-Ticket-Triage-Workflow-Automation/actions/workflows/ci.yml)
-![CD Ready](https://img.shields.io/badge/CD-Docker%20%2B%20Render%20Ready-success)
+![Deployment Setup](https://img.shields.io/badge/Deployment-Docker%20%2B%20Render%20Setup-blue)
 
-Production-grade full-stack AI workflow project for support operations.
+This app helps teams handle support tickets faster.
 
-The system ingests unstructured support tickets, predicts priority, recommends routing team, and produces concise summaries with optional LLM enhancement. It is designed as a portfolio project that demonstrates practical AI engineering, backend/API design, frontend delivery, testing, and deployment readiness.
+You paste tickets, click run, and the app gives:
+
+- urgency level (P0 to P3)
+- suggested team to handle the issue
+- short plain summary
+- clear reason for each decision
 
 ## Creator
 
 - Yousaf Zeb
 
-## Project Goal
+## What This Project Solves
 
-Support triage is often slow and inconsistent when handled manually. This project automates the first-pass triage decision while keeping outputs explainable for trust and human audit.
+Manual ticket triage is slow and often inconsistent.
+This project gives a fast first decision so teams can respond sooner and stay aligned.
 
-Key outcomes:
+Main benefits:
 
-- Faster triage turnaround for incoming ticket queues
-- More consistent priority and routing decisions
-- Better handoff quality through structured rationale and summaries
+- Faster first response
+- More consistent routing
+- Easier handoff between teams
 
-## End-to-End AI Workflow
+## How It Works (Simple)
 
-1. Input ingestion
+1. You add tickets
 
-- Source tickets can be loaded from JSON (`data/tickets.json`) or submitted from the frontend UI.
-- Each ticket includes `ticket_id`, `title`, and `description`.
+- You can use the example data or paste your own list.
 
-2. Priority inference
+2. The app checks urgency
 
-- The workflow applies urgency keyword signals to map tickets to `P0`, `P1`, `P2`, or `P3`.
-- Priority mapping is deterministic and transparent, which makes it easy to explain to stakeholders.
+- It marks each ticket as P0, P1, P2, or P3.
 
-3. Team routing
+3. The app suggests an owner team
 
-- Domain keyword scoring routes the ticket to the best-fit team:
-  `Security`, `Billing`, `Auth`, `Platform`, or `Support`.
-- If no signal is found, routing defaults safely to `Support`.
+- It picks Security, Billing, Auth, Platform, or Support.
 
-4. AI summary augmentation (optional)
+4. It writes a short summary
 
-- If `OPENAI_API_KEY` is configured, the backend asks the model for a one-sentence summary.
-- If no API key is configured or LLM call fails, the system falls back to deterministic summary text.
+- If AI is available, it writes a better one-line summary.
+- If not, it still gives a safe fallback summary.
 
-5. Explainable output generation
+5. You get clear results
 
-- Every result includes:
-  - predicted `priority`
-  - predicted `team`
-  - combined `rationale` from inference logic
-  - final `ai_summary`
-- Outputs can be returned via API or exported as `triage_report.json` in CLI mode.
+- Priority
+- Team
+- Reason
+- Summary
 
-## Full-Stack Architecture
+## User Experience
 
-1. Frontend (`web/`)
+- Clean dashboard
+- Easy action buttons
+- Copy and download results
+- Mobile-friendly layout
 
-- Interactive single-page app for:
-  - loading sample ticket payloads
-  - submitting custom JSON ticket batches
-  - visualizing triage cards with priority/team badges and rationale
+## Quick Start
 
-2. Backend API (`src/api.py`)
-
-- FastAPI service exposing:
-  - `GET /api/health`
-  - `GET /api/tickets/sample`
-  - `POST /api/triage`
-- Serves frontend assets and API docs from the same service.
-
-3. AI Engine (`src/workflow.py`)
-
-- Core triage rules
-- Optional OpenAI summarizer with graceful fallback
-- Reusable for both API and CLI execution modes
-
-4. Data model layer (`src/models.py`)
-
-- Typed dataclass models for input and output consistency
-
-5. Quality and delivery
-
-- Unit and API tests in `tests/`
-- CI workflow in `.github/workflows/ci.yml`
-- Docker and platform deployment configuration included
-
-## Tech Stack
-
-- Python 3.11+
-- FastAPI + Uvicorn
-- OpenAI SDK (optional)
-- Pytest + FastAPI TestClient
-- Docker + Docker Compose
-- GitHub Actions CI
-
-## Repository Structure
-
-```text
-AI-Ticket-Triage_Assistant/
-  src/
-    api.py
-    main.py
-    models.py
-    workflow.py
-  web/
-    index.html
-    styles.css
-    app.js
-  data/
-    tickets.json
-  tests/
-    test_workflow.py
-    test_api.py
-  .github/workflows/ci.yml
-  .vscode/settings.json
-  .env.example
-  .dockerignore
-  .gitignore
-  Dockerfile
-  docker-compose.yml
-  render.yaml
-  requirements.txt
-  README.md
-```
-
-## Local Development Setup
-
-1. Create virtual environment and activate it.
-2. Install dependencies:
+1. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Configure environment values:
+2. Optional: add your AI key for richer summaries:
 
 ```bash
 copy .env.example .env
 ```
 
-Optional values in `.env`:
-
-- `OPENAI_API_KEY` for LLM summaries
-- `OPENAI_MODEL` (default is `gpt-4.1-mini`)
-
-## Run the Application (Frontend + Backend)
+3. Start the app:
 
 ```bash
 uvicorn src.api:app --reload
@@ -154,107 +83,36 @@ uvicorn src.api:app --reload
 Open:
 
 - UI: `http://127.0.0.1:8000/`
-- Interactive API docs: `http://127.0.0.1:8000/docs`
-
-## Run CLI Batch Mode
-
-```bash
-python -m src.main
-```
-
-This processes `data/tickets.json` and writes `triage_report.json`.
-
-## API Contract
-
-### POST `/api/triage`
-
-Request body:
-
-```json
-{
-  "tickets": [
-    {
-      "ticket_id": "T-101",
-      "title": "Payments API outage",
-      "description": "Checkout calls are failing in production."
-    }
-  ]
-}
-```
-
-Response body:
-
-```json
-{
-  "results": [
-    {
-      "ticket_id": "T-101",
-      "priority": "P0",
-      "team": "Platform",
-      "rationale": "Matched 1 P0 urgency keyword(s). Matched 1 keyword(s) for Platform.",
-      "ai_summary": "Payments API outage: routed to Platform with priority P0."
-    }
-  ]
-}
-```
-
-## Testing
-
-Run all tests:
-
-```bash
-pytest -q
-```
-
-Coverage includes:
-
-- workflow logic tests for priority and team inference
-- API endpoint tests for health and triage behavior
 
 ## Deployment
 
-### Option A: Docker
+This project includes deployment setup for:
+
+- Docker
+- Docker Compose
+- Render
+
+Use Docker locally:
 
 ```bash
 docker build -t ai-ticket-triage-workflow-automation .
 docker run -p 8000:8000 --env-file .env ai-ticket-triage-workflow-automation
 ```
 
-### Option B: Docker Compose
+## For Developers
+
+API docs:
+
+- `http://127.0.0.1:8000/docs`
+
+Run tests:
 
 ```bash
-docker compose up --build
+pytest -q
 ```
 
-### Option C: Render
-
-Repository already contains `render.yaml`.
-
-1. Push code to GitHub.
-2. Create Render Blueprint from the repo.
-3. Add `OPENAI_API_KEY` as secret env var (optional).
-4. Deploy service.
-
-## GitHub Publish
+Run in command-line mode:
 
 ```bash
-git remote add origin https://github.com/<your-username>/ai-ticket-triage-workflow-automation.git
-git push -u origin main
+python -m src.main
 ```
-
-## Portfolio Value and Job-Ready Skills Demonstrated
-
-- Applied AI workflow design for operations automation
-- Explainable inference with rationale-first outputs
-- Hybrid deterministic + generative AI architecture
-- Backend API engineering with typed request/response contracts
-- Frontend implementation for real user interaction
-- Automated testing and CI for reliability
-- Containerization and deployment configuration
-
-## Future Enhancements
-
-- Confidence scoring per triage decision
-- Human feedback loop and continuous rule/model tuning
-- Jira/Slack integrations for auto-assignment
-- Monitoring dashboard for triage quality trends

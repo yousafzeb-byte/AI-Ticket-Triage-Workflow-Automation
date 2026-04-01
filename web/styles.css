@@ -84,6 +84,22 @@ body {
   color: var(--ink-soft);
 }
 
+.workflow-strip {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.workflow-strip span {
+  padding: 0.26rem 0.58rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #1b4f8f;
+  background: #e8f3ff;
+}
+
 .panel {
   background: color-mix(in srgb, var(--card) 88%, #ebf1f7 12%);
   border: 1px solid color-mix(in srgb, var(--line) 80%, #f4f8fc 20%);
@@ -101,6 +117,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
+  flex-wrap: wrap;
 }
 
 h2 {
@@ -175,6 +192,46 @@ button:active {
   color: var(--ink-soft);
 }
 
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 0.7rem;
+}
+
+.stat-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.65rem 0.7rem;
+  background: #fff;
+}
+
+.stat-label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  margin: 0.35rem 0 0;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.mini-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -231,6 +288,39 @@ button:active {
   line-height: 1.35;
 }
 
+.raw-output {
+  margin-top: 0.8rem;
+  border-top: 1px dashed var(--line);
+  padding-top: 0.7rem;
+}
+
+.raw-output summary {
+  cursor: pointer;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+
+#rawOutput {
+  margin-top: 0.6rem;
+  max-height: 240px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f8fbff;
+  padding: 0.7rem;
+  font-size: 0.78rem;
+}
+
+.guide-panel ol {
+  margin: 0.6rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--ink-soft);
+}
+
+.guide-panel li {
+  margin-bottom: 0.3rem;
+}
+
 @keyframes reveal {
   from {
     opacity: 0;
@@ -256,6 +346,14 @@ button:active {
 @media (max-width: 780px) {
   .shell {
     margin-top: 1.4rem;
+  }
+
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
   }
 
   .panel {
