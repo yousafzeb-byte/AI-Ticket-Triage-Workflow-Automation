@@ -1,4 +1,4 @@
-# AI Ticket Triage Assistant
+# AI Ticket Triage Assistant: Full-Stack Workflow Automation
 
 Production-grade full-stack AI workflow project for support operations.
 
@@ -213,8 +213,8 @@ Coverage includes:
 ### Option A: Docker
 
 ```bash
-docker build -t ai-ticket-triage-assistant .
-docker run -p 8000:8000 --env-file .env ai-ticket-triage-assistant
+docker build -t ai-ticket-triage-workflow-automation .
+docker run -p 8000:8000 --env-file .env ai-ticket-triage-workflow-automation
 ```
 
 ### Option B: Docker Compose
@@ -235,7 +235,7 @@ Repository already contains `render.yaml`.
 ## GitHub Publish
 
 ```bash
-git remote add origin https://github.com/<your-username>/ai-ticket-triage-assistant.git
+git remote add origin https://github.com/<your-username>/ai-ticket-triage-workflow-automation.git
 git push -u origin main
 ```
 

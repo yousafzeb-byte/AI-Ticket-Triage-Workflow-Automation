@@ -15,7 +15,7 @@ WEB_DIR = ROOT_DIR / "web"
 DATA_FILE = ROOT_DIR / "data" / "tickets.json"
 
 app = FastAPI(
-    title="AI Ticket Triage Assistant",
+    title="AI Ticket Triage Assistant: Full-Stack Workflow Automation",
     description="Full-stack AI workflow app for ticket triage and explainable routing.",
     version="1.0.0",
 )
@@ -41,7 +41,7 @@ class BatchTriageRequest(BaseModel):
 
 @app.get("/api/health")
 def health() -> dict[str, str]:
-    return {"status": "ok", "service": "ai-ticket-triage-assistant"}
+    return {"status": "ok", "service": "ai-ticket-triage-workflow-automation"}
 
 
 @app.get("/api/tickets/sample")
