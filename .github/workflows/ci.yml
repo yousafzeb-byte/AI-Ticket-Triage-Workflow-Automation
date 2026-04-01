@@ -27,8 +27,9 @@ jobs:
       - name: Run tests
         env:
           PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+          PYTHONPATH: .
         run: |
           python --version
           pip --version
           pip freeze
-          pytest -q
+          pytest -q tests
