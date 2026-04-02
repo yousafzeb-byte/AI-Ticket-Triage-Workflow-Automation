@@ -12,11 +12,11 @@
 
 ## Recruiter Snapshot
 
-- Built a full-stack AI triage app with a FastAPI backend, vanilla JS frontend, and automated keyword-based classification engine.
-- Designed a plain-English UI — no JSON, no technical input required from the end user.
-- Implemented priority scoring (P0–P3) and team routing across 5 domains: Security, Billing, Auth, Platform, and Support.
-- Wired in optional OpenAI summarisation with a reliable rule-based fallback so the app works with or without an API key.
-- Added CI with GitHub Actions (8 consecutive passing runs), Docker containerisation, and Render deployment config.
+- Built a production-style full-stack triage system with FastAPI, a responsive vanilla JS dashboard, and deterministic classification logic.
+- Delivered a plain-English input experience so non-technical users can submit tickets without JSON or structured syntax.
+- Implemented explainable ticket decisions with priority scoring (P0-P3), team routing, rationale output, and one-line summaries.
+- Added optional OpenAI-powered summarization with a robust fallback path to keep results available even without API access.
+- Shipped deployment-ready engineering standards: automated CI checks, Docker packaging, Render configuration, and tested API workflows.
 
 ## Architecture At A Glance
 
