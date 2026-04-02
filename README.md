@@ -2,7 +2,12 @@
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688)](https://fastapi.tiangolo.com/)
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
+[![Uvicorn](https://img.shields.io/badge/Uvicorn-0.30-4B5563)](https://www.uvicorn.org/)
+[![Pydantic](https://img.shields.io/badge/Pydantic-v2-E92063)](https://docs.pydantic.dev/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-1.46-412991)](https://platform.openai.com/)
+[![pytest](https://img.shields.io/badge/pytest-8.3-0A9EDC)](https://pytest.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)](https://www.docker.com/)
+[![Render](https://img.shields.io/badge/Render-Deploy%20Ready-46E3B7)](https://render.com/)
 [![CI](https://github.com/yousafzeb-byte/AI-Ticket-Triage-Workflow-Automation/actions/workflows/ci.yml/badge.svg)](https://github.com/yousafzeb-byte/AI-Ticket-Triage-Workflow-Automation/actions/workflows/ci.yml)
 
 ## Recruiter Snapshot
